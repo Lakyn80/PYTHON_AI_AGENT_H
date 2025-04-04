@@ -1,0 +1,21 @@
+<!-- app/templates/entries.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scraped Entries</title>
+</head>
+<body>
+    <h1>Entries</h1>
+    {% for entry in entries %}
+        <div>
+            <h2>{{ entry.title }}</h2>
+            <p><strong>Zdroj:</strong> {{ entry.source.name }}</p>
+            <p><strong>Publikováno:</strong> {{ entry.posted_at }}</p>
+            <p>{{ entry.content }}</p>
+        </div>
+    {% else %}
+        <p>No entries found.</p>
+    {% endfor %}
+</body>
+</html>

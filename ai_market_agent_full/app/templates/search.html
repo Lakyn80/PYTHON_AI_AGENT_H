@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/search.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Search Entries</h1>
+    <form method="post">
+      <input
+        type="text"
+        name="query"
+        placeholder="Search..."
+        value="{{ query }}"
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+    <h2>Results:</h2>
+    {% for entry in results %}
+    <div>
+      <h3>{{ entry.title }}</h3>
+      <p>
+        <strong>{{ entry.source.name }}</strong> | {{
+        entry.posted_at.strftime('%Y-%m-%d') }}
+      </p>
+      <p>{{ entry.content }}</p>
+    </div>
+    {% endfor %} {% elif query %}
+    <p>No results found for "<strong>{{ query }}</strong>".</p>
+    {% endif %}
+  </body>
+</html>
